@@ -11,6 +11,7 @@ class Category(models.Model):
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
     price = models.CharField(max_length=50, null=True, blank=True)
     image = models.ImageField(upload_to='', null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
