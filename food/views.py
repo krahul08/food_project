@@ -44,6 +44,7 @@ def sub_category_data(request):
             data['sub_category_name'] = sub_category_obj.name
             data['sub_category_image'] = image
             data['sub_category_price'] = sub_category_obj.price
+            data['sub_category_description'] = sub_category_obj.description
             sub_category_list.append(data)
         return JsonResponse({'success': True, 'sub_category_list': sub_category_list})
 
@@ -65,5 +66,8 @@ def sub_category_image(request):
             data['image_id'] = image_obj.id
             data['image_name'] = image_obj.name
             data['sub_category_image'] = image
+            data['sub_category_price'] = image_obj.sub_category.price
+            data['category_image'] = request.scheme + '://' + request.get_host() + '/media/' + str(
+                image_obj.sub_category.category.image)
             image_list.append(data)
         return JsonResponse({'success': True, 'sub_category_image_list': image_list})
